@@ -25,6 +25,26 @@ $ whisper-backup --logfile /opt/graphite/storage/log/whisper-backup/whisper-back
         restore swift
 ```
 
+Docker:
+-------
+
+Build:
+```bash
+./build.sh
+```
+
+Usage:
+```bash
+docker run --rm \
+    -v "$(pwd)"/opt/graphite/storage/whisper/:/opt/graphite/storage/whisper \
+    -v "$(pwd)"/var/lock/:/var/lock/ \
+    -v "$(pwd)"/var/tmp/:/var/tmp/ whisper-backup:latest \
+    --bucket $(hostname -s) \
+    --retention 5 \
+    --quiet \
+    backup swift
+```
+
 Goals
 -----
 
